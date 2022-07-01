@@ -1,29 +1,34 @@
-describe('Log in', () => {
+import PageFactory from './PageObject/pageFactory'
+
+const page = new PageFactory();
+
+describe('Happy path', () => {
     it('Sign in', () => {
         cy.visit("https://www.saucedemo.com/")
+        cy.viewport(1920, 1080)
         // login
-        cy.get('[id="user-name"]').type('standard_user')
-        cy.get('[id="password"]').type('secret_sauce')
-        cy.get('[id="login-button"]').click()
-        //add to the cart a bacpack and a red t-shirt
-        cy.get('[id="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[id="remove-sauce-labs-backpack"]').should('be.visible')
-        cy.get('[id="add-to-cart-test.allthethings()-t-shirt-(red)"]').click()
-        cy.get('[id="remove-test.allthethings()-t-shirt-(red)"]').should('be.visible')
+        page.login.typeUserNane('standard_user')
+        page.login.typePassword('secret_sauce')
+        page.login.clickLoginButton()
+        // add to the cart a bacpack and a red t-shirt
+        page.home.clickAddBackpack()
+        page.home.isRemoveBackpackButtonDisplayed()
+        page.home.clickAddRedTShirt()
+        page.home.isRemoveRedTShirtButtonDisplayed()
         // go to the cart
-        cy.get('[id="shopping_cart_container"]').click()
+        page.home.clickCartButton()
         // checkout
-        cy.get('[id="checkout"]').click()
+        page.cart.clickCheckoutButton()
         // your information
-        cy.get('[id="first-name"]').type('test')
-        cy.get('[id="last-name"]').type('test_last')
-        cy.get('[id="postal-code"]').type('12345')
-        cy.get('[id="continue"]').click()
+        page.yourInformation.typeFirstName('test')
+        page.yourInformation.typeLastName('test_last')
+        page.yourInformation.typePostalCode('12345')
+        page.yourInformation.clickContinueButton()
         // finish checkout
-        cy.get('[id="finish"]').click()
+        page.checkout.clickFinishButton()
         //assertions
-        cy.url().should('include', '/checkout-complete')
-        cy.contains('THANK YOU FOR YOUR ORDER').should('be.visible')
-        cy.contains('Checkout: Complete!').should('be.visible')
+        page.checkoutComplete.isPageOpen()
+        page.checkoutComplete.getThankYouText().should('be.visible')
+        page.checkoutComplete.getCheckoutText().should('be.visible')
     })
   })
