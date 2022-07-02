@@ -1,11 +1,18 @@
 import PageFactory from './PageObject/pageFactory'
 
 const page = new PageFactory();
+let client = {
+    firstName:'Bob',
+    lastName: 'Smit',
+    postalCode: 12345
+};
 
 describe('Happy path', () => {
+    beforeEach(() => {
+        cy.visit('')
+      })
+
     it('Sign in', () => {
-        cy.visit("https://www.saucedemo.com/")
-        cy.viewport(1920, 1080)
         // login
         page.login.typeUserNane('standard_user')
         page.login.typePassword('secret_sauce')
@@ -20,9 +27,9 @@ describe('Happy path', () => {
         // checkout
         page.cart.clickCheckoutButton()
         // your information
-        page.yourInformation.typeFirstName('test')
-        page.yourInformation.typeLastName('test_last')
-        page.yourInformation.typePostalCode('12345')
+        page.yourInformation.typeFirstName(client.firstName)
+        page.yourInformation.typeLastName(client.lastName)
+        page.yourInformation.typePostalCode(client.postalCode)
         page.yourInformation.clickContinueButton()
         // finish checkout
         page.checkout.clickFinishButton()
