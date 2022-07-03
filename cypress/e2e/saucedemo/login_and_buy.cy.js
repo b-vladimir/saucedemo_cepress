@@ -14,8 +14,8 @@ describe('Happy path', () => {
 
     it('Sign in', () => {
         // login
-        page.login.typeUserNane('standard_user')
-        page.login.typePassword('secret_sauce')
+        page.login.typeUserNane(Cypress.env('username'))
+        page.login.typePassword(Cypress.env('password'))
         page.login.clickLoginButton()
         // add to the cart a bacpack and a red t-shirt
         page.home.clickAddBackpack()

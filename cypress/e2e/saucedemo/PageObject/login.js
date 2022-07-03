@@ -10,7 +10,7 @@ class Login {
     }
 
     typePassword(password) {
-        cy.get(this._passwordField).type(password);
+        cy.get(this._passwordField).type(password, {log: false});
     }
 
     clickLoginButton() {
