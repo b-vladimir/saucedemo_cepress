@@ -12,7 +12,7 @@ describe('Happy path', () => {
         cy.visit('')
       })
 
-    it('Sign in', () => {
+    it('Make order', () => {
         // login
         page.login.typeUserNane(Cypress.env('username'))
         page.login.typePassword(Cypress.env('password'))
