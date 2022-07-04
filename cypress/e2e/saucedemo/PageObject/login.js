@@ -1,20 +1,23 @@
-class Login {
+import BasePage from './basePage'
+
+class Login extends BasePage {
     constructor() {
+        super()
         this._userNameField = '[id="user-name"]';
         this._passwordField = '[id="password"]';
         this._loginButton = '[id="login-button"]';
     }
 
     typeUserNane(name) {
-        cy.get(this._userNameField).type(name);
+        this.typeInField(this._userNameField, name);
     }
 
     typePassword(password) {
-        cy.get(this._passwordField).type(password, {log: false});
+        this.typeInField(this._passwordField, password, false);
     }
 
     clickLoginButton() {
-        cy.get(this._loginButton).click();
+        this.clickElement(this._loginButton);
     }
 }
 

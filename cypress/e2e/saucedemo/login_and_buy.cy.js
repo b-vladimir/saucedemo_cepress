@@ -8,7 +8,7 @@ let client = {
 };
 
 describe('Happy path', () => {
-    beforeEach(() => {
+    before(() => {
         cy.visit('')
       })
 

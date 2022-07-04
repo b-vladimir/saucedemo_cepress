@@ -1,5 +1,8 @@
-class Home {
+import BasePage from "./basePage";
+
+class Home  extends BasePage{
     constructor() {
+        super()
         this._addBackpackButton = '[id="add-to-cart-sauce-labs-backpack"]';
         this._removeBackpackButton = '[id="remove-sauce-labs-backpack"]';
         this._addRedTshirtButton = '[id="add-to-cart-test.allthethings()-t-shirt-(red)"]';
@@ -7,24 +10,28 @@ class Home {
         this._cartButton = '[id="shopping_cart_container"]';
     }
 
+    isPageOpen() {
+        this.urlCheck('/inventory')
+    }
+    
     clickAddBackpack() {
-        cy.get(this._addBackpackButton).click();
+        this.clickElement(this._addBackpackButton);
     }
 
     clickAddRedTShirt() {
-        cy.get(this._addRedTshirtButton).click();
+        this.clickElement(this._addRedTshirtButton);
     }
 
     isRemoveBackpackButtonDisplayed() {
-        cy.get(this._removeBackpackButton).should('be.visible')
+        this.isElementVisible(this._removeBackpackButton);
     }
 
     isRemoveRedTShirtButtonDisplayed() {
-        cy.get(this._removeRedTshirtButton).should('be.visible')
+        this.isElementVisible(this._removeRedTshirtButton);
     }
 
     clickCartButton() {
-        cy.get(this._cartButton).click();
+        this.clickElement(this._cartButton);
     }
 }
 

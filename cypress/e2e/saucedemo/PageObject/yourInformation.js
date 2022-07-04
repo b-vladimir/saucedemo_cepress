@@ -1,25 +1,32 @@
-class YourInformation {
+import BasePage from "./basePage";
+
+class YourInformation extends BasePage{
     constructor() {
+        super();
         this._firstNameField = '[id="first-name"]';
         this._lastNameField = '[id="last-name"]';
         this._postalCodeField = '[id="postal-code"]';
         this._continueButton = '[id="continue"]';
     }
 
+    isPageOpen() {
+        this.urlCheck('/checkout-step-one');
+    }
+
     typeFirstName(firstName) {
-        cy.get(this._firstNameField).type(firstName);
+        this.typeInField(this._firstNameField, firstName);
     }
 
     typeLastName(lastName) {
-        cy.get(this._lastNameField).type(lastName);
+        this.typeInField(this._lastNameField, lastName);
     }
 
     typePostalCode(code) {
-        cy.get(this._postalCodeField).type(code);
+        this.typeInField(this._postalCodeField, code);
     }
 
     clickContinueButton() {
-        cy.get(this._continueButton).click();
+        this.clickElement(this._continueButton);
     }
 }
 

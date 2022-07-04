@@ -1,10 +1,17 @@
-class Checkout {
+import BasePage from "./basePage";
+
+class Checkout extends BasePage{
     constructor() {
+        super();
         this._finishButton = '[id="finish"]';
     }
 
+    isPageOpen() {
+        this.urlCheck('/checkout-step-two');
+    }
+
     clickFinishButton() {
-        cy.get(this._finishButton).click();
+        this.clickElement(this._finishButton);
     }
 }
 
